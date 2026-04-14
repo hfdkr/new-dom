@@ -66,10 +66,110 @@
             padding-left: 40px;
 
         }
+
         .div-input {
             display: flex;
             justify-content: center;
-                position: relative;
+            position: relative;
+        }
+
+        .simple-button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .div-button-add {
+            display: flex;
+            justify-content: center;
+        }
+
+        .event-list li {
+            margin: 8px 0;
+            padding: 10px;
+            border: 1px solid black;
+            cursor: pointer;
+            list-style: none;
+            background-color: white;
+        }
+
+        .faq-container {
+            background-color: aquamarine;
+            border: 2px solid black;
+            padding: 15px;
+        }
+
+        .faq-item {
+            margin-bottom: 10px;
+            border: 1px solid black;
+            background-color: white;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 12px;
+            border: none;
+            background-color: burlywood;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: #f5f5f5;
+            padding: 0 12px;
+        }
+
+        .faq-answer p {
+            margin: 10px 0;
+        }
+
+        .faq-answer.open {
+            max-height: 100px;
+        }
+
+        .form-container {
+            background-color: aquamarine;
+            border: 2px solid black;
+            padding: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 4px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            min-height: 18px;
+        }
+
+        #success-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -96,7 +196,8 @@
         <h2>Exercice 3 : Filtrage de liste en temps réel</h2>
         <div class="div-list">
             <div class="div-input">
-                <img src="./image/search.svg" alt="search-icon" style="width: 30px; height: 30px; margin-right: 10px;position: absolute; left:650px; top: 6px;max-width: 100%;">
+                <img src="./image/search.svg" alt="search-icon"
+                    style="width: 30px; height: 30px; margin-right: 10px;position: absolute; left:650px; top: 6px;max-width: 100%;">
                 <input type="text" id="search-input" placeholder="Search..." onkeyup="filterList()">
             </div>
             <ul class="list">
@@ -111,6 +212,98 @@
                 <li>Canada</li>
                 <li>Argentina</li>
             </ul>
+        </div>
+    </div>
+    <!-- ex 4 -->
+    <div>
+        <h2>Exercice 4 : Délégation d'événements</h2>
+        <div class="div-list">
+            <div class="div-button-add">
+                <button id="add-item-button" class="simple-button">Ajouter un élément</button>
+            </div>
+            <ul id="event-list" class="event-list">
+                <li>Élément 1</li>
+                <li>Élément 2</li>
+                <li>Élément 3</li>
+                <li>Élément 4</li>
+                <li>Élément 5</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ex 5 -->
+    <div>
+        <h2>Exercice 5 : Accordion / FAQ</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">Question 1 : Qu'est-ce que HTML ?</button>
+                <div class="faq-answer">
+                    <p>HTML est un langage utilisé pour structurer une page web.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Question 2 : Qu'est-ce que CSS ?</button>
+                <div class="faq-answer">
+                    <p>CSS sert à styliser la page web, comme les couleurs et la mise en page.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Question 3 : Qu'est-ce que JavaScript ?</button>
+                <div class="faq-answer">
+                    <p>JavaScript permet d'ajouter de l'interactivité sur une page web.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Question 4 : C'est quoi le DOM ?</button>
+                <div class="faq-answer">
+                    <p>Le DOM représente la structure HTML que JavaScript peut modifier.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Question 5 : Pourquoi utiliser localStorage ?</button>
+                <div class="faq-answer">
+                    <p>localStorage permet de garder des données même après le rechargement de la page.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ex 6 -->
+    <div>
+        <h2>Exercice 6 : Validation de formulaire</h2>
+        <div class="form-container">
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" id="name">
+                    <small class="error-message" id="name-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email">
+                    <small class="error-message" id="email-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password">
+                    <small class="error-message" id="password-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirmation</label>
+                    <input type="password" id="confirm-password">
+                    <small class="error-message" id="confirm-password-error"></small>
+                </div>
+
+                <button type="submit" class="simple-button">S'inscrire</button>
+                <p id="success-message"></p>
+            </form>
         </div>
     </div>
     <script>
@@ -188,9 +381,109 @@
                 }
             }
         }
-        // exercice 4
-        const listItems = document.querySelectorAll('.list li');
+        // exercice 4 : Délégation d'événements
+        const addItemButton = document.getElementById('add-item-button');
+        const eventList = document.getElementById('event-list');
+        let itemCount = 5;
 
+        addItemButton.addEventListener('click', function () {
+            itemCount++;
+
+            const newItem = document.createElement('li');
+            newItem.textContent = 'Élément ' + itemCount;
+
+            eventList.appendChild(newItem);
+        });
+
+        eventList.addEventListener('click', function (e) {
+            if (e.target.tagName === 'LI') {
+                if (e.target.style.backgroundColor === 'yellow') {
+                    e.target.style.backgroundColor = 'white';
+                } else {
+                    e.target.style.backgroundColor = 'yellow';
+                }
+            }
+        });
+
+
+        // exercice 5 : Accordion / FAQ
+        const questions = document.querySelectorAll('.faq-question');
+
+        for (let i = 0; i < questions.length; i++) {
+            questions[i].addEventListener('click', function () {
+                const currentAnswer = this.nextElementSibling;
+                const allAnswers = document.querySelectorAll('.faq-answer');
+
+                for (let j = 0; j < allAnswers.length; j++) {
+                    if (allAnswers[j] !== currentAnswer) {
+                        allAnswers[j].classList.remove('open');
+                    }
+                }
+
+                currentAnswer.classList.toggle('open');
+            });
+        }
+
+
+        // exercice 6 : Validation de formulaire
+        const registerForm = document.getElementById('register-form');
+
+        registerForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirm-password').value.trim();
+
+            const nameError = document.getElementById('name-error');
+            const emailError = document.getElementById('email-error');
+            const passwordError = document.getElementById('password-error');
+            const confirmPasswordError = document.getElementById('confirm-password-error');
+            const successMessage = document.getElementById('success-message');
+
+            nameError.textContent = '';
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            confirmPasswordError.textContent = '';
+            successMessage.textContent = '';
+
+            let isValid = true;
+
+            if (name === '') {
+                nameError.textContent = 'Le nom est obligatoire';
+                isValid = false;
+            }
+
+            if (email === '') {
+                emailError.textContent = 'L\'email est obligatoire';
+                isValid = false;
+            } else if (!email.includes('@')) {
+                emailError.textContent = 'Email invalide';
+                isValid = false;
+            }
+
+            if (password === '') {
+                passwordError.textContent = 'Le mot de passe est obligatoire';
+                isValid = false;
+            } else if (password.length < 8) {
+                passwordError.textContent = 'Le mot de passe doit contenir au moins 8 caractères';
+                isValid = false;
+            }
+
+            if (confirmPassword === '') {
+                confirmPasswordError.textContent = 'La confirmation est obligatoire';
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                confirmPasswordError.textContent = 'Les mots de passe ne sont pas identiques';
+                isValid = false;
+            }
+
+            if (isValid) {
+                successMessage.textContent = 'Inscription réussie !';
+                registerForm.reset();
+            }
+        });
 
     </script>
 </body>
