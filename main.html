@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .button {
+            background-color: blanchedalmond;
+            font-size: 40px;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 10px;
+            margin: 20px;
+        }
+
+        #div-body {
+            background-color: aquamarine;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            border: 2px solid black;
+        }
+
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            font-style: italic;
+            color: red;
+            border: 2px solid darkgoldenrod;
+        }
+
+        .div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: aquamarine;
+            border: 2px solid black;
+            padding: 10px;
+        }
+
+        #start-button,
+        #end-button {
+            background-color: black;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .div-list {
+            background-color: aquamarine;
+            border: 2px solid black;
+            padding: 10px;
+            font-size: 20px;
+
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid black;
+            border-radius: 4px;
+            background-color: burlywood;
+            padding-left: 40px;
+
+        }
+        .div-input {
+            display: flex;
+            justify-content: center;
+                position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- exercice 1 -->
+    <h2>Exercice 1 : Changement de thème (Dark / Light Mode)</h2>
+    <div id="div-body">
+        <button id="div-button" class="button">Click to change theme</button>
+    </div>
+    <!-- exercice 2 -->
+    <div>
+        <h2>Exercice 2 : Barre de progression</h2>
+        <div class="div">
+            <button id="start-button" class="button-1"><img src="./image/remove.svg" alt="remove-icon"></button>
+            <progress id="progress-bar" value="0" max="100"
+                style="width: 100%; background-color: black; height: 30px;border-radius: 30px;"></progress>
+            <button id="end-button" class="button-1"><img src="./image/add.svg" alt="add-icon"></button>
+
+        </div>
+    </div>
+    <!-- ex 3 -->
+    <div>
+        <h2>Exercice 3 : Filtrage de liste en temps réel</h2>
+        <div class="div-list">
+            <div class="div-input">
+                <img src="./image/search.svg" alt="search-icon" style="width: 30px; height: 30px; margin-right: 10px;position: absolute; left:650px; top: 6px;max-width: 100%;">
+                <input type="text" id="search-input" placeholder="Search..." onkeyup="filterList()">
+            </div>
+            <ul class="list">
+                <li>France</li>
+                <li>Germany</li>
+                <li>Italy</li>
+                <li>Spain</li>
+                <li>Portugal</li>
+                <li> Netherlands</li>
+                <li>Japan</li>
+                <li>Maroc</li>
+                <li>Canada</li>
+                <li>Argentina</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const button = document.getElementById('div-button');
+        const divBody = document.getElementById('div-body');
+
+        //  Load saved color
+        const savedColor = localStorage.getItem("bgColor");
+        if (savedColor) {
+            divBody.style.backgroundColor = savedColor;
+
+            // Update button text based on the saved color
+            if (savedColor === "black") {
+                button.textContent = "Light Mode";
+            } else {
+                button.textContent = "Dark Mode";
+            }
+        }
+
+        //  Toggle
+        button.addEventListener('click', function () {
+            let currentColor = divBody.style.backgroundColor;
+
+            if (currentColor === 'black') {
+                divBody.style.backgroundColor = 'aquamarine';
+                button.style.color = "aquamarine";
+                button.style.backgroundColor = "black";
+                localStorage.setItem("bgColor", "aquamarine");
+            } else {
+                divBody.style.backgroundColor = 'black';
+                button.style.color = "black";
+                button.style.backgroundColor = "aquamarine";
+                localStorage.setItem("bgColor", "black");
+            }
+        });
+        // exercice 2
+        const startButton = document.getElementById('start-button');
+        const endButton = document.getElementById('end-button');
+        const progressBar = document.getElementById('progress-bar');
+        startButton.addEventListener('click', function () {
+            if (progressBar.value > 0) {
+                progressBar.value = 0;
+            }
+        });
+        endButton.addEventListener('click', function () {
+            if (progressBar.value < 100) {
+                progressBar.value += 10;
+            }
+        });
+        //  Load saved color
+        const savedColor_1 = localStorage.getItem("bgColor");
+        if (savedColor_1) {
+            divBody.style.backgroundColor = savedColor_1;
+
+            // Update button text based on the saved color
+            if (savedColor_1 === "black") {
+                button.textContent = "Light Mode";
+            } else {
+                button.textContent = "Dark Mode";
+            }
+        }
+        // exercice 3
+        function filterList() {
+            const input = document.getElementById('search-input');
+            const filter = input.value.toLowerCase();
+            const ul = document.querySelector('.list');
+            const li = ul.getElementsByTagName('li');
+
+            for (let i = 0; i < li.length; i++) {
+                const txtValue = li[i].textContent || li[i].innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+        // exercice 4
+        const listItems = document.querySelectorAll('.list li');
+
+
+    </script>
+</body>
+
+</html>
